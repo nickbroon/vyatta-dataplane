@@ -3277,6 +3277,11 @@ void crypto_incmpl_policy_init(void)
 					    CDS_LFHT_AUTO_RESIZE |
 					    CDS_LFHT_ACCOUNTING,
 					    NULL);
+
+#ifndef SO_BINDTODEVICE
+	rte_panic("Hey Nick, that's just a demo!");
+#endif
+
 	if (!crypto_incmpl_policy)
 		rte_panic("Can't allocate hash for incomplete xfrm policies\n");
 }

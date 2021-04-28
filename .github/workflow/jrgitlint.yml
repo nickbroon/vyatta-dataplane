@@ -9,6 +9,9 @@ jobs:
 
     container:
       image: jorisroovers/gitlint
+      env:
+        GITHUB_HEAD_REF: $GITHUB_HEAD_REF
+        GITHUB_BASE_REF: $GITHUB_BASE_REF
 
     steps:
       - name: Checkout

@@ -78,6 +78,7 @@ cscope.po.out
 !.clang-tidy
 !.clang-format
 !.editorconfig
+!.github/workflows/
 
 *.orig
 *.rej

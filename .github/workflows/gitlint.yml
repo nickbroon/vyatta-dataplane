@@ -1,0 +1,21 @@
+name: GitLint
+
+on: [pull_request]
+
+jobs:
+  gitlint:
+
+    runs-on: ubuntu-latest
+
+    container:
+      image: jorisroovers/gitlint
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Fetch all
+        run: git fetch --no-tags --prune origin +refs/heads/*:refs/remotes/origin/*
+
+      - name: Gitlint
+        run: gitlint --commits "origin/${GITHUB_BASE_REF}..origin/${GITHUB_HEAD_REF}"

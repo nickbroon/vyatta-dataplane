@@ -1,0 +1,21 @@
+name: Checkpatch
+
+on: [pull_request]
+
+jobs:
+  checkpatch:
+
+    runs-on: ubuntu-latest
+
+    container:
+      image: webispy/checkpatch
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Fetch all
+        run: git fetch --no-tags --prune origin +refs/heads/*:refs/remotes/origin/*
+
+      - name: Checkpatch
+        run: ./scripts/checkpatch_wrapper.sh origin/${GITHUB_BASE_REF} origin/${GITHUB_HEAD_REF}
